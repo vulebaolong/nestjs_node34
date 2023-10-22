@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Req, Request } from '@nestjs/common';
 import { CreateVideoDto } from './dto/create-video.dto';
 import { UpdateVideoDto } from './dto/update-video.dto';
 import { PrismaClient, video } from '@prisma/client';
@@ -12,7 +12,11 @@ export class VideoService {
         return 'This action adds a new video';
     }
 
-    async findAll(): Promise<video[]> {
+    async findAll(
+        @Req()
+        req,
+    ): Promise<video[]> {
+        console.log(req.user);
         return await this.prisma.video.findMany();
     }
 
