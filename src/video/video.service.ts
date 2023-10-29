@@ -12,11 +12,7 @@ export class VideoService {
         return 'This action adds a new video';
     }
 
-    async findAll(
-        @Req()
-        req,
-    ): Promise<video[]> {
-        console.log(req.user);
+    async findAll(): Promise<video[]> {
         return await this.prisma.video.findMany();
     }
 
